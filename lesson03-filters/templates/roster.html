@@ -8,7 +8,11 @@
     <div class = 'container'>
         <h1>Class Roster - Advanced Programming</h1>
         <div class = 'stats'>
-            <strong>Total Students</strong>{{students|length}}
+            <strong>Total Students:</strong>{{students|length}}
+            {#Enhanced Statistics with filters#}
+            {%set junior count = students|selectattr('Grade', 'equalto', '11')|list|length%}
+            {{junior_count}}
+            <strong>Juniors:</strong>
         </div>
         <table>
             <thead>
@@ -25,7 +29,7 @@
                 {% for student in students %}
                     <tr>
                         <td>{{loop.index}}</td>
-                        <td>{{student.First}}</td>
+                        <td>{{student.First|upper}} {{student.Last|title}}</td>
                         <td>{{student.Email}}</td>
                         <td>{{student.Birthday}}</td>
                         <td>{{student.Grade}}</td>

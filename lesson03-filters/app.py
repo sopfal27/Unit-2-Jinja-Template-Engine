@@ -58,10 +58,10 @@ def roster():
 def statistics():
     students = read_roster()
     total = len(students)
-    seniors = [s for s in students if s['grade']==12]
-    juniors = [s for s in students if s['grade']==11]
-    sophomores = [s for s in students if s['grade']==10]
-    freshmen = [s for s in students if s['grade']==9]
+    seniors = [s for s in students if s['Grade']==12]
+    juniors = [s for s in students if s['Grade']==11]
+    sophomores = [s for s in students if s['Grade']==10]
+    freshmen = [s for s in students if s['Grade']==9]
     males = [s for s in students if s['Gender']== 'M']
     females = [s for s in students if s['Gender']== 'F']
 
@@ -72,9 +72,10 @@ def statistics():
         "juniors": juniors,
         "sophomores": sophomores,
         "freshmen": freshmen,
-        
+        "males": males,
+        "females": females
     }
-    return render_template('stats.html', students=students)
+    return render_template('stats.html', **data)
 
 if __name__ == '__main__':
     app.run(debug=True)
