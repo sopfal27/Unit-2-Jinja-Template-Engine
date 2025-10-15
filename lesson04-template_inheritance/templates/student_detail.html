@@ -1,0 +1,10 @@
+{% extends "base.html%}
+
+{% block title %}{{student.First}}{{student.Last}}{% endblock title%}
+
+{% block content %}
+<h1>Student Profile</h1>
+<div class = "stat-card">
+    <h2>{{student.First|title}}</h2>
+</div>
+{% endblock %}

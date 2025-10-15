@@ -12,6 +12,7 @@ def read_roster():
         #     students.append(row)
         # return students
         return [row for row in reader]
+    
 @app.route('/')
 def home():
     """Home page with link to roster"""
@@ -50,7 +51,7 @@ def home():
 
 @app.route('/roster')
 def roster():
-    students = read_roster
+    students = read_roster()
     print(students)
     return render_template('roster.html', students=students)
 
@@ -76,6 +77,15 @@ def statistics():
         "females": females
     }
     return render_template('stats.html', **data)
+
+@app.route("/student/<int:student_id>")
+def student_detail(student_id):
+    """show the details of a specififc student"""
+    students = read_roster()
+    # find student by ID (ID is indexed in CSV)
+    if 0 <= student_id <= len(students):
+        student = students[student_id - 1]
+        return render_template('student_detail.html', student=student)
 
 if __name__ == '__main__':
     app.run(debug=True)
